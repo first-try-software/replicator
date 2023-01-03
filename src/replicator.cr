@@ -1,6 +1,5 @@
-# TODO: Write documentation for `Replicator`
+require "./replicator/replicable"
+
 module Replicator
   VERSION = "0.1.0"
-
-  # TODO: Put your code here
 end

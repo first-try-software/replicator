@@ -1,9 +1,12 @@
 require "./spec_helper"
 
-describe Replicator do
-  # TODO: Write tests
+class Galaxy; extend Replicator::Replicable; end
 
-  it "works" do
-    true.should eq(true)
+Spectator.describe Replicator do
+  describe ".build" do
+    it "returns an empty array when an unregistered class is provided" do
+      replicas = Galaxy.build(:iks_buruk)
+      expect(replicas.size).to eq(0)
+    end
   end
 end
