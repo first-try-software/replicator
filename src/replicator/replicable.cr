@@ -1,7 +1,21 @@
+require "./registry"
+
 module Replicator
   module Replicable
-    def build(key)
-      Array(String).new
+    macro extended
+      def self.replicates(key)
+        {{@type}}.__replicable_registry.add(key, self)
+      end
+
+      def self.replicate(key)
+        {{@type}}.__replicable_registry
+          .get(key)
+          .map { |klass| klass.new }
+      end
+
+      protected def self.__replicable_registry
+        @@__replicable_registry ||= Replicator::Registry(Symbol, {{@type.class}}).new
+      end
     end
   end
 end

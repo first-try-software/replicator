@@ -9,4 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adds interface for building objects with Replicator
+- Abstract classes can extend Replicator::Replicable to make their descendants "replicable"
+- Concrete, "replicable" classes can self register under one or more keys by calling `replicates :symbol`
+- Multiple concrete, "replicable" classes can self register under the same key by calling `replicates :symbol`
+- Registered, "replicable" classes can be instantiated using the abstract parent's `.replicate(:symbol)` method
