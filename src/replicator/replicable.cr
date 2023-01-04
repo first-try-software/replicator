@@ -7,10 +7,10 @@ module Replicator
         {{@type}}.__replicable_registry.add(key, self)
       end
 
-      def self.replicate(key)
+      def self.replicate(key, *args, **kwargs)
         {{@type}}.__replicable_registry
           .get(key)
-          .map { |klass| klass.new }
+          .map { |klass| klass.new(*args, **kwargs) }
       end
 
       protected def self.__replicable_registry
